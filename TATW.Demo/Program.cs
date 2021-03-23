@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TATW.Generators;
 
 namespace TATW.Demo
 {
@@ -7,7 +8,7 @@ namespace TATW.Demo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Preparing to generate!");
             var engine = new CodeGeneratorEngine();
             engine.Config = new CodeGenerationConfig()
             {
@@ -36,6 +37,13 @@ namespace TATW.Demo
                     { "Age", "int" },
                     { "Address", "string" },
                 }
+            });
+            engine.Add(new FileDataStore()
+            {
+                ClassName = "StudentFileStore",
+                FilePath = "Data",
+                FileName = "students.json",
+                FileObjectType = "TATW.Target.Models.Student",
             });
             engine.WriteAllFiles();
         }

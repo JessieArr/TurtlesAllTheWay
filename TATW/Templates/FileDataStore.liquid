@@ -1,0 +1,40 @@
+﻿using System;
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Text;
+using System.IO;
+using Newtonsoft.Json;
+using {{ FileObjectNamespace }};
+
+namespace {{ Namespace }}
+{
+    [GeneratedCode("TATW", "0.0.1")]
+    public class {{ ClassName }}
+    {
+        private static string _fileName = "{{ FileName }}";
+        public static {{ FileObjectType }} {{ FileObjectName }};
+
+        public {{ FileObjectType }} LoadFileData()
+        {
+            if({{ FileObjectName }} == null)
+            {
+                if(!File.Exists(_fileName))
+                {
+                    {{ FileObjectName }} = new {{ FileObjectType }}();
+                }
+                else
+                {
+                    var fileContents = File.ReadAllText(_fileName);
+                    {{ FileObjectName }} = JsonConvert.DeserializeObject<{{ FileObjectType }}>(fileContents);
+                }
+            }            
+            return {{ FileObjectName }};
+        }
+
+        public void SaveFileData({{ FileObjectType }} objectToSave)
+        {
+            var fileText = JsonConvert.SerializeObject(objectToSave);
+            File.WriteAllText(_fileName, fileText);
+        }
+    }
+}

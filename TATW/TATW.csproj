@@ -10,6 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Templates\FileDataStore.liquid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Templates\Model.liquid">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
